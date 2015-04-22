@@ -1,0 +1,9 @@
+This page has been visited <%= session[:hit_counter] %> times<br>
+<%= link_to "Create a New Song", new_song_path %><br>
+
+<% @songs.each do |song| %>
+
+  <h3><%= link_to song.title, song_path(song) %></h3>
+
+  <p><%= "#{song.artist}" %></p>
+<% end %>
