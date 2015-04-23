@@ -11,11 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421174655) do
+ActiveRecord::Schema.define(version: 20150422211254) do
 
   create_table "songs", force: :cascade do |t|
     t.text     "title"
     t.text     "artist"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  create_table "songtags", force: :cascade do |t|
+    t.integer  "song_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "label"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,8 +39,9 @@ ActiveRecord::Schema.define(version: 20150421174655) do
     t.string   "last_name"
     t.string   "username"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "role",            default: 0
   end
 
 end

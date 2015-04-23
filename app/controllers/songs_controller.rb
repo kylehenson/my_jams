@@ -2,19 +2,19 @@ class SongsController < ApplicationController
   def index
     session[:hit_counter] ||= 0
     session[:hit_counter] += 1
-    @songs = Song.all
+    @songs = current_user.songs.all #Song.all replace with: @ songs = current_user.songs.all to associate to a specidfic user
   end
 
   def show
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id]) #Song.find(params[:id]) replace with: @ songs = current_user.songs.find(params[:id])
   end
 
   def new
-    @song = Song.new
+    @song = current_user.songs.new #Song.new
   end
 
   def create
-    @song = Song.new(song_params)
+    @song = current_user.songs.new(song_params) #Song.new(song_params)
     if @song.save
       flash[:notice] = "Song successfully created"
       redirect_to song_path(@song)
@@ -25,11 +25,11 @@ class SongsController < ApplicationController
   end
 
   def edit
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id]) #Song.find(params[:id])
   end
 
   def update
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id]) #Song.find(params[:id])
     if @song.update(song_params)
       redirect_to song_path(@song)
     else
@@ -38,7 +38,7 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id]) #Song.find(params[:id])
     @song.destroy
     redirect_to songs_path
   end

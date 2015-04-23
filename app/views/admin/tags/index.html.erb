@@ -1,0 +1,5 @@
+<h1>List of Tags:</h1>
+
+<% @tags.each do |tag| %>
+  <li><%= tag.label %> <%= link_to 'Edit Tag', edit_admin_tag_path(tag) %> </li>
+<% end %>

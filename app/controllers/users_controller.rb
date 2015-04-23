@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    #@songs = current_user.songs
   end
 
   private
